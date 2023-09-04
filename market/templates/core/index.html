@@ -9,7 +9,7 @@
     <div class="grid grid-cols-3 gap-3">
         {% for item in items %}
             <div class="bg-blue-900">
-                <a href="#">
+                <a href="{% url 'detail' item.id %}">
                     <div class="px-6 py-12">
                         <img src="{{item.image.url}}" class="rounded-t-xl" style="height:200px, width:300px">
                     </div>
