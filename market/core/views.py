@@ -10,3 +10,7 @@ def index(request):
     
     context = {'items': items, 'categories': categories}
     return render(request, 'core/index.html', context)
+
+
+def contact(request):
+    return render(request, 'core/contact.html')
