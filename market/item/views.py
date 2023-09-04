@@ -24,3 +24,10 @@ def edit(request, pk):
         form = EditItemForm(instance=item)
 
     return render(request, 'item/form.html', {'form': form, 'title': 'Edit item',})
+
+
+def delete(request, pk):
+    item = get_object_or_404(Item, pk=pk, created_by=request.user)
+    item.delete()
+
+    return redirect('home')
