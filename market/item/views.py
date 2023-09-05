@@ -23,10 +23,7 @@ def new(request):
     else:
         form = NewItemForm()
 
-    return render(request, 'item/form.html', {
-        'form': form,
-        'title': 'New item',
-    })
+    return render(request, 'item/form.html', {'form': form, 'title': 'New item',})
 
 
 def edit(request, pk):
