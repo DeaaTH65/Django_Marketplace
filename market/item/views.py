@@ -7,9 +7,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def items(request):
+    query = request.GET.get('query', '')
     items = Item.objects.filter(is_sold=False)
     
-    return render(request, 'item/items.html', {'items': items})
+    if query:
+        items = items.filter(name__icontains=query)
+    
+    return render(request, 'item/items.html', {'items': items, 'query': query})
 
 
 def detail(request, pk):
