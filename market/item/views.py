@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Item
 from .forms import EditItemForm, NewItemForm
+from django.contrib.auth.decorators import login_required
 
 
 
@@ -10,6 +11,7 @@ def detail(request, pk):
     return render(request, 'item/detail.html', {'item': item})
 
 
+@login_required(login_url='login')
 def new(request):
     if request.method == 'POST':
         form = NewItemForm(request.POST, request.FILES)
@@ -26,6 +28,7 @@ def new(request):
     return render(request, 'item/form.html', {'form': form, 'title': 'New item',})
 
 
+@login_required
 def edit(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
 
@@ -42,6 +45,7 @@ def edit(request, pk):
     return render(request, 'item/form.html', {'form': form, 'title': 'Edit item',})
 
 
+@login_required
 def delete(request, pk):
     item = get_object_or_404(Item, pk=pk, created_by=request.user)
     item.delete()
