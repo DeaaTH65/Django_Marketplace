@@ -7,8 +7,19 @@
     <div class="col-span-1  mt-3 mx-2">
         <form method="GET" action="{% url 'item:items' %}">
             <input name="query", class="w-full py-4 px-6 border rounded-xl" type="text" value="{{query}}" placeholder="Search for ......." />
-            <button class="mt-2 mx-3 py-3 px-8 text-lg bg-blue-700 text-white rounded-xl">Search</button?
+            <button class="mt-2 mx-3 py-3 px-8 text-lg bg-blue-700 text-white rounded-xl">Search</button>
         </form>
+        <hr class="my-6">
+
+        <h3 align="center" class="bg-teal-700 font-bold">Categories</h3>
+        <ul>
+            {% for category in categories %}
+            <li class="py-2 px-2 mt-3 rounded-xl{% if category.id == category_id %} bg-teal-500{% endif %}">
+                <a href="{% url 'item:items' %}?query={{ query }}&category={{ category.id }}" class="text-purple-300 bg-teal-900 hover:bg-teal-600 hover:text-white rounded-md px-3 py-2 mx-3 text-sm font-medium">{{ category.name }}</a>
+            </li>
+            {% endfor %}
+        </ul>
+        
     </div>
 
     <div class="col-span-3  mt-3 mr-3">
