@@ -19,7 +19,12 @@
             </li>
             {% endfor %}
         </ul>
-        
+        <hr class="my-6">
+
+        <h3 class="font-semibold">Clear filters</h3>
+        <ul>
+            <li><a href="{% url 'item:items' %}" class="mt-2 py-3 px-8 inline-block bg-red-500 text-lg rounded-xl text-white">Clear</a>
+        </ul>
     </div>
 
     <div class="col-span-3  mt-3 mr-3">
