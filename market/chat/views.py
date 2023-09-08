@@ -41,3 +41,11 @@ def new_conversation(request, item_pk):
     form = ConversationMessageForm()
     return render(request, 'chat/new.html', {'form': form})
     
+    
+@login_required
+def inbox(request):
+    conversations = Conversation.objects.filter(members__in=[request.user.id])
+
+    return render(request, 'chat/inbox.html', {'conversations': conversations})
+    
+    

@@ -3,6 +3,7 @@
 {% block title %} {{item.name}} {% endblock title %}
 
 {% block content %}
+<div class="mt-6 px-6 py-12 bg-gray-500 rounded-xl">
 <div class="grid grid-cols-5 gap-6">
     <div class="col-span-3">
         <img src="{{ item.image.url }}" class="rounded-xl">
@@ -31,5 +32,6 @@
             <a href="{% url 'chat:new' item.id %}" class="inline-block mt-6 px-6 py-3 text-lg font-semibold bg-teal-500 text-white rounded-xl hover:bg-teal-700">Contact seller</a>
         {% endif %}
     </div>
+</div>
 </div>
 {% endblock content %}
