@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from item.models import Category, Item
 from .forms import SignUpForm
 from django.contrib.auth import authenticate, login
+from .models import Profile
 
 
 
@@ -32,3 +33,11 @@ def signup(request):
     else:
         form = SignUpForm()
     return render(request, 'core/signup.html', {'form': form})
+
+
+def profile(request, pk):
+    if request.user.is_authenticated:
+        profile = Profile.objects.all()
+        return render(request, 'core/profile.html', {"profile": profile})
+    else:
+        return redirect('home')

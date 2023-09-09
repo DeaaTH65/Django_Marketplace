@@ -1,0 +1,36 @@
+{% extends "core/base.html" %}
+
+{% block title %} {{ user.username }} {% endblock title %}
+
+{% block content %}
+{% load static %}
+
+<div class="bg-gray-500 pb-6 grid grid-cols-4 gap-4">
+
+    <div class="col-span-2  mt-3 mx-2">
+        <div class="bg-gray-500 px-20">
+            {% if user.profile.profile_img %}
+                <img src="{{ user.profile.profile_img.url }}" alt="profile picture" class="rounded-xl" style="height:600px">
+            {% else %}
+                <img src="{% static 'images/default_pic.png' %}" class="rounded-xl" style="height:500px">
+            {% endif %}
+        </div>
+    
+    </div>
+
+    <div class="col-span-2  mt-3 mr-3">
+        <div class="bg-gray-600 px-10">
+            <h2 align="center" class="bg-blue-800 font-bold">{{user.username}}</h2>
+            <p>Name:  </p>
+            <p>Email:  </p>
+            <p>Phone: </p>
+            <p>Bio:  </p>
+            <p>Facebook: </p>
+            <p>Instagram: </p>
+            <p>Twitter: </p>
+            <p>Last updated: </p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
