@@ -25,3 +25,14 @@ def create_profile(sender, instance, created, **kwargs):
         user_profile = Profile(user=instance)
         user_profile.save()        
 post_save.connect(create_profile, sender=User)
+
+
+
+class Message(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(null=True, blank=True, max_length=100)
+    phone = models.CharField(null=True, blank=True, max_length=10)
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.name

@@ -5,14 +5,16 @@
 {% block content %}
 <div class="grid grid-cols-5 gap-6">
     <div class="col-span-2 p-6 bg-gray-700 rounded-xl">
-        <h1 class="mb-6 text-3xl text-blue-700">Contact Us</h1>
-        <p class="text-blue-500"><strong>Name: </strong></p>
-        <p class="text-blue-500"><strong>Email: </strong></p>
-        <p class="text-blue-500"><strong>Phone: </strong></p>
-        <p class="text-blue-500"><strong>Message: </strong></p>
+        <h1 class="mb-4 text-2xl text-blue-700">Contact Us</h1>
+        <form method="POST" action="">
+            {% csrf_token %}
+            {{form.as_p}}
+            
+            <button type="submit" class="mt-6 py-3 px-6 text-lg bg-blue-500 hover:bg-blue-700 rounded-xl text-white">Submit</button>
+        </form>
     </div>
     <div class="col-span-3 p-6 bg-gray-700 rounded-xl">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56518.77058272739!2d85.2055944486328!3d27.70421809999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19ddb10a5241%3A0xad8314d99693a77f!2sBafal!5e0!3m2!1sen!2snp!4v1693826328258!5m2!1sen!2snp" width="820" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56518.77058272739!2d85.2055944486328!3d27.70421809999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb19ddb10a5241%3A0xad8314d99693a77f!2sBafal!5e0!3m2!1sen!2snp!4v1693826328258!5m2!1sen!2snp" width="820" height="600" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 </div>
 {% endblock content %}

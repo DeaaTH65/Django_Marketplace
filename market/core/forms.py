@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from .models import Profile
+from .models import Profile, Message
+
+INPUT_CLASSES = 'w-full py-4 px-6 rounded-xl border'
 
 
 
@@ -35,3 +37,18 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ('profile_img', 'name',  'profile_bio', 'facebook_link', 'instagram_link', 'twitter_link',)
+        
+        
+
+class MessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ('name', 'email', 'phone', 'message',)
+        
+    name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Your name', 'class': 'w-full py-4 px-6 rounded-xl'}))
+    email = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Email', 'class': 'w-full py-4 px-6 rounded-xl'}))
+    phone = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Phone Number', 'class': 'w-full py-4 px-6 rounded-xl'}))
+    message = forms.CharField(widget=forms.Textarea(attrs={'placeholder': 'Your Messages', 'class': 'w-full py-4 px-6 rounded-xl'}))
+    
+    
+

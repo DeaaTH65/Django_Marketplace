@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from item.models import Category, Item
-from .forms import SignUpForm, ProfileForm
+from .forms import SignUpForm, ProfileForm, MessageForm
 from django.contrib.auth import authenticate, login
 from .models import Profile
 
@@ -16,7 +16,12 @@ def index(request):
 
 
 def contact(request):
-    return render(request, 'core/contact.html')
+    form = MessageForm()
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        form.save()
+        return redirect('contact')
+    return render(request, 'core/contact.html', {'form': form})
 
 
 def signup(request):
