@@ -9,8 +9,8 @@
 
     <div class="col-span-2  mt-3 mx-2">
         <div class="bg-gray-500 px-20">
-            {% if user.profile.profile_img %}
-                <img src="{{ user.profile.profile_img.url }}" alt="profile picture" class="rounded-xl" style="height:600px">
+            {% if profile.profile_img %}
+                <img src="{{ profile.profile_img.url }}" alt="profile picture" class="rounded-xl" style="height:600px">
             {% else %}
                 <img src="{% static 'images/default_pic.png' %}" class="rounded-xl" style="height:500px">
             {% endif %}
@@ -20,16 +20,23 @@
 
     <div class="col-span-2  mt-3 mr-3">
         <div class="bg-gray-600 px-10">
-            <h2 align="center" class="bg-blue-800 font-bold">{{user.username}}</h2>
-            <p>Name:  </p>
-            <p>Email:  </p>
-            <p>Phone: </p>
-            <p>Bio:  </p>
-            <p>Facebook: </p>
-            <p>Instagram: </p>
-            <p>Twitter: </p>
-            <p>Last updated: </p>
+            <h2 align="center" class="bg-blue-800 font-bold text-2xl">{{user.username}}</h2>
+            <p class="text-blue-600 text-2xl">Name: {{profile.name}} </p>
+            <p class="text-blue-600 text-2xl">Email: {{user.email}} </p>
+            <p class="text-blue-600 text-2xl">Bio: {{profile.profile_bio}} </p>
+            <p class="text-blue-600 text-2xl">Facebook: {{profile.facebook_link}} </p>
+            <p class="text-blue-600 text-2xl">Instagram: {{profile.instagram_link}} </p>
+            <p class="text-blue-600 text-2xl">Twitter: {{profile.twitter_link}} </p>
+            <p class="text-blue-600 text-2xl">Last updated: {{profile.date_modified}} </p>
         </div>
+
+
+       
+        <a href="{% url 'update_profile' %}">
+            <button class="mt-16 py-4 px-6 text-lg bg-blue-500 hover:bg-blue-700 rounded-xl text-white">Update Profile</button>
+        </a>
+       
+        
     </div>
 </div>
 

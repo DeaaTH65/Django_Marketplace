@@ -1,0 +1,25 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Update User {% endblock title %}
+
+
+{% block content %}
+<div class="w-1/2 my-6 mx-auto p-6 bg-gray-500 rounded-xl">
+{% if user.is_authenticated %}    
+
+    <h1 class="mb-6 text-2xl text-center"> Update Profile </h1>
+
+    <form method="POST" action="" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        <br/>
+        {{ profile_form.as_p }}
+        
+        <button type="submit" class="mt-8 py-4 px-6 text-lg bg-blue-500 hover:bg-blue-700 rounded-xl text-white">Update</button>
+    </form>
+
+{% else %}
+    <h1>You need to be logged in..</h1>
+{% endif %}
+</div>
+{% endblock content %}
