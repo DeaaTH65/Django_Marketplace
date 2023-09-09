@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 
 
 
-
 # Create your views here.
 @login_required
 def new_conversation(request, item_pk):
@@ -39,14 +38,16 @@ def new_conversation(request, item_pk):
         form = ConversationMessageForm()
     
     form = ConversationMessageForm()
-    return render(request, 'chat/new.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'chat/new.html', context)
     
     
 @login_required
 def inbox(request):
     conversations = Conversation.objects.filter(members__in=[request.user.id])
 
-    return render(request, 'chat/inbox.html', {'conversations': conversations})
+    context = {'conversations': conversations}
+    return render(request, 'chat/inbox.html', context)
     
     
 @login_required
@@ -68,4 +69,5 @@ def detail(request, pk):
     else:
         form = ConversationMessageForm()
 
-    return render(request, 'chat/detail.html', {'conversation': conversation, 'form': form})
+    context = {'conversation': conversation, 'form': form}
+    return render(request, 'chat/detail.html', context)

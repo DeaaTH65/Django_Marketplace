@@ -20,13 +20,16 @@ def items(request):
     if query:
         items = items.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
-    return render(request, 'item/items.html', {'items': items, 'query': query, 'categories': categories, 'category_id': int(category_id)})
+    context = {'items': items, 'query': query, 'categories': categories, 'category_id': int(category_id)}
+    return render(request, 'item/items.html', context)
 
 
 def detail(request, pk):
     item = get_object_or_404(Item, pk=pk)
     related_items = Item.objects.filter(category=item.category, is_sold=False).exclude(pk=pk)
-    return render(request, 'item/detail.html', {'item': item, 'related_items': related_items})
+    
+    context = {'item': item, 'related_items': related_items}
+    return render(request, 'item/detail.html', context)
 
 
 @login_required(login_url='login')
@@ -43,7 +46,8 @@ def new(request):
     else:
         form = NewItemForm()
 
-    return render(request, 'item/form.html', {'form': form, 'title': 'New item',})
+    context = {'form': form, 'title': 'New item',}
+    return render(request, 'item/form.html', context)
 
 
 @login_required
@@ -60,7 +64,8 @@ def edit(request, pk):
     else:
         form = EditItemForm(instance=item)
 
-    return render(request, 'item/form.html', {'form': form, 'title': 'Edit item',})
+    context = {'form': form, 'title': 'Edit item',}
+    return render(request, 'item/form.html', context)
 
 
 @login_required

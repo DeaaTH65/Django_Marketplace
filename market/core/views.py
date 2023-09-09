@@ -21,7 +21,8 @@ def contact(request):
         form = MessageForm(request.POST)
         form.save()
         return redirect('contact')
-    return render(request, 'core/contact.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'core/contact.html', context)
 
 
 def signup(request):
@@ -37,7 +38,8 @@ def signup(request):
             return redirect('home')
     else:
         form = SignUpForm()
-    return render(request, 'core/signup.html', {'form': form})
+    context = {'form': form}
+    return render(request, 'core/signup.html', context)
 
 
 def profile(request, pk):
